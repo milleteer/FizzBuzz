@@ -1,6 +1,4 @@
 import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
@@ -9,21 +7,18 @@ import java.util.Scanner;
  * Created by gkoles on 2015.03.24..
  */
 
-public class ReadWithScanner {
+@SuppressWarnings("DefaultFileTemplate")
+class ReadWithScanner {
 
     public final Path theFilePath;
-    private final static Charset ENCODING = StandardCharsets.UTF_8;
 
-    protected static int Fizz;
-    protected static int Buzz;
-    protected static int CountTo;
+    private static int Fizz;
+    private static int Buzz;
+    private static int CountTo;
 
-    /**
-     * @param FileName
-     */
-    public ReadWithScanner(String FileName){
+    public ReadWithScanner(){
 
-        theFilePath = Paths.get(FileName);
+        theFilePath = Paths.get("C:\\Users\\gkoles\\IdeaProjects\\FizzBuzz\\src\\input.txt");
 
     }
 
@@ -44,7 +39,7 @@ public class ReadWithScanner {
         }
     }
 
-    public void processLine(String s) throws IOException{
+    void processLine(String s) {
 
         Scanner scanner = new Scanner(s);
 

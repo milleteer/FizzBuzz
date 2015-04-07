@@ -3,52 +3,25 @@ import java.io.IOException;
 /**
  * Created by gkoles on 2015.03.23..
  */
-public class FizzBuzz {
+@SuppressWarnings("DefaultFileTemplate")
+class FizzBuzz {
 
     public static void main(String[] args) throws IOException {
 
-        FizzBuzz fb = new FizzBuzz();
-
-        String result1 = fb.FizzBuzzPerNumber(3,5,15);
-        String result2 = fb.FizzBuzzPerNumber(3,5,14);
-
-        //System.out.println(result1);
-        //System.out.println(result2);
-
-
-        ReadWithScanner rw = new ReadWithScanner("C:\\Users\\gkoles\\IdeaProjects\\FizzBuzz\\src\\input.txt");
+        ReadWithScanner rw = new ReadWithScanner();
         rw.processLineByLine();
-
-        /*System.out.println(rw.Fizz);
-        System.out.println(rw.Buzz);
-        System.out.println(rw.CountTo);
-*/
 
     }
 
      public boolean Fizz(int fizz, int i){
 
-        boolean result = false;
-         if(i % fizz == 0){
-
-             result = true;
-
-             return result;
-         }
-         else return result;
+         return i % fizz == 0;
 
      }
 
     public boolean Buzz(int buzz, int i){
 
-        boolean result = false;
-        if(i % buzz == 0){
-
-            result = true;
-
-            return result;
-        }
-        else return result;
+        return i % buzz == 0;
 
     }
 
@@ -57,7 +30,7 @@ public class FizzBuzz {
 
             boolean result = Buzz(Buzz,Number) && Fizz(Fizz, Number);
 
-            if(result == true)return "FizzBuzz";
+            if(result)return "FizzBuzz";
             else if(Buzz(Buzz, Number)) return "Buzz";
             else if(Fizz(Fizz, Number)) return "Fizz";
             else {

@@ -9,6 +9,7 @@ import java.nio.file.Paths;
  * Created by gkoles on 2015.03.24..
  */
 
+@SuppressWarnings("DefaultFileTemplate")
 public class ReadWithScannerTest {
 
     @Test
@@ -25,7 +26,7 @@ public class ReadWithScannerTest {
 
         Path FilePath = Paths.get("C:\\Users\\gkoles\\IdeaProjects\\FizzBuzz\\src\\input.txt");
 
-        ReadWithScanner rs = new ReadWithScanner("C:\\Users\\gkoles\\IdeaProjects\\FizzBuzz\\src\\input.txt");
+        ReadWithScanner rs = new ReadWithScanner();
 
         Assert.assertEquals(rs.theFilePath, FilePath);
 

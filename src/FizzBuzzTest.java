@@ -41,7 +41,7 @@ public class FizzBuzzTest {
         }
         else{
 
-            Assert.assertEquals(result,input);
+            Assert.assertEquals(result,false);
         }
 
     }
@@ -63,7 +63,7 @@ public class FizzBuzzTest {
         }
         else{
 
-            Assert.assertEquals(result,input);
+            Assert.assertEquals(result,false);
         }
     }
 
