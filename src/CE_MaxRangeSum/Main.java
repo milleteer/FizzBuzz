@@ -15,6 +15,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
         File file = new File("src\\CE_MaxRangeSum\\input.txt");
+        //File file = new File(args[0]);
 
         BufferedReader buffer = new BufferedReader(new FileReader(file));
         String line;
@@ -49,30 +50,33 @@ public class Main {
 
         LinkedList<Integer> list = new LinkedList<Integer>();
 
-        //play with this
         setFirstFlag(true);
 
         // calcs the sum of first N numbers
         // movement to add
        while (scanner.hasNextInt()){
 
-           if (getDays() > 0) {
+           if (list.size() < getDays()) {
 
                list.add(scanner.nextInt());
-               setDays(getDays() - 1);
 
-               System.out.println(list);
+            //   System.out.println(list);
 
            }
            else {
 
                int sum = calculateSum(list);
+               if (getFirstFlag()){
+
+                   setFinalSumPerLine(sum);
+                   setFirstFlag(false);
+               }
                compareSums(sum);
 
                list.remove();
                list.add(scanner.nextInt());
 
-               System.out.println(list);
+              // System.out.println(list);
 
 
            }
@@ -83,13 +87,16 @@ public class Main {
         int sum = calculateSum(list);
         compareSums(sum);
 
-        System.out.println("The final sum is: " + getFinalSumPerLine());
+        if (getFinalSumPerLine() < 0)setFinalSumPerLine(0);
+
+       // System.out.println("The final sum is: " + getFinalSumPerLine());
+       System.out.println(getFinalSumPerLine());
 
     }
 
     private static void compareSums(int sum) {
 
-        if (sum > getFinalSumPerLine() && !getFirstFlag())setFinalSumPerLine(sum);
+        if (sum > getFinalSumPerLine())setFinalSumPerLine(sum);
 
     }
 
