@@ -22,7 +22,7 @@ public class Main {
             line = line.trim();
 
             processLine(line);
-            System.out.println();
+
         }
     }
 
@@ -44,13 +44,13 @@ public class Main {
 
         }
 
-        System.out.println("Number1 is:" + getNumber1());
-        System.out.println("Number2 is: " + getNumber2());
+       /* System.out.println("Number1 is:" + getNumber1());
+        System.out.println("Number2 is: " + getNumber2());*/
         System.out.println("Position to compare is: " + getPosition());
 
-       boolean result = ComparePositions(TranslateTo2(getNumber1()),TranslateTo2(getNumber2()));
+       boolean result = ComparePositions(GeneratePattern(TranslateTo2(getNumber1())),GeneratePattern(TranslateTo2(getNumber2())));
 
-        System.out.println("The bit position match is: " + result);
+      /*  System.out.println("The bit position match is: " + result);*/
 
 
     }
@@ -61,25 +61,47 @@ public class Main {
 
         else{
 
-            System.out.println("The number " + i + " in binary is: " + Integer.toString(i, 2));
+           System.out.println("The number " + i + " in binary is: " + Integer.toString(i, 2));
             return Integer.toString(i, 2);
         }
 
     }
 
-    protected static boolean ComparePositions(String number1, String number2) {
+    protected static String GeneratePattern(String number1){
 
         String s1 = new StringBuilder(number1).reverse().toString();
-        String s2 = new StringBuilder(number2).reverse().toString();
 
-        String patternChar = String.valueOf(s1.charAt(getPosition() - 1 ));
-        String matchChar = String.valueOf(s2.charAt(getPosition() - 1));
+        try {
 
-        Pattern pattern = Pattern.compile(patternChar);
+            return String.valueOf(s1.charAt(getPosition() - 1));
 
-        Matcher matcher = pattern.matcher(matchChar);
+        }
+        catch (StringIndexOutOfBoundsException e){
 
-        return matcher.matches();
+           // System.out.println("That position doesn't exist");
+            return null;
+
+        }
+
+    }
+
+    protected static boolean ComparePositions(String number1, String number2){
+
+        try{
+
+            Pattern pattern = Pattern.compile(number1);
+
+            Matcher matcher = pattern.matcher(number2);
+
+            System.out.println(matcher.matches());
+            return matcher.matches();
+
+        }catch (NullPointerException e){
+
+            System.out.println("false");
+            return false;
+        }
+
 
     }
 

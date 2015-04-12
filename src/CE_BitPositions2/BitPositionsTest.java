@@ -1,8 +1,7 @@
-package CE_BitPositions;
+package CE_BitPositions2;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
@@ -19,12 +18,19 @@ public class BitPositionsTest {
     }
 
     @Test
-    public void ComparePositionsTest(){
+    public void createPatternTest(){
 
-        Main.setPosition(2);
+        //10
+        Main.setNumber(2);
+        Main.setPosition1(1);
+        Main.setPosition2(2);
 
-        assertTrue(Main.ComparePositions(Main.GeneratePattern("000"), Main.GeneratePattern("001")));
-        assertFalse(Main.ComparePositions(Main.GeneratePattern("000"), Main.GeneratePattern("010")));
+    assertThat("0", is(Main.createPattern(Main.getPosition1())));
+    assertThat("1", is(Main.createPattern(Main.getPosition2())));
+
+        Main.setPosition2(3);
+
+        assertThat(null, is(Main.createPattern(Main.getPosition2())));
 
     }
 
