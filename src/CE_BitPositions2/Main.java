@@ -13,7 +13,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        File file = new File("src\\CE_BitPositions\\input.txt");
+        File file = new File("src/CE_BitPositions2/input.txt");
         //File file = new File(args[0]);
 
         BufferedReader buffer = new BufferedReader(new FileReader(file));
