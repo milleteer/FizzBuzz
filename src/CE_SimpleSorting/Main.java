@@ -4,9 +4,9 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Locale;
 import java.util.Scanner;
 
 
@@ -39,9 +39,9 @@ public class Main {
 
             ArrayList<Double> list = new ArrayList<Double>();
 
-            while (sc.hasNextDouble()){
+            while (sc.hasNext()){
 
-                list.add(sc.nextDouble());
+                list.add(Double.valueOf(sc.next()));
 
             }
 
@@ -52,12 +52,13 @@ public class Main {
             // enlist the items
             for (double i : list){
 
-                System.out.print(String.format("%.3f",i) + " ");
+                System.out.print(String.format(Locale.ENGLISH,"%.3f",i) + " ");
 
 
             }
             //skip row
             System.out.println();
+
 
         }
 
