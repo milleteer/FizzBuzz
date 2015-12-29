@@ -1,4 +1,4 @@
-package CE_RemoveCharacters.CE_LowerCase;
+package CE_RemoveCharacters;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -24,13 +24,24 @@ public class Main {
         }
     }
 
+    public static List<String> getListToRemoveCharacters() {
+        return ListToRemoveCharactersFrom;
+    }
+
+    public static void setListToRemoveCharacters(List<String> listToRemoveCharacters) {
+        ListToRemoveCharactersFrom = listToRemoveCharacters;
+    }
+
+    private static List<String> ListToRemoveCharactersFrom = new ArrayList<String>();
+    private static ArrayList<Character> ListOfCharsToRemove = new ArrayList<Character>();
+
     private static void processLine(String s) throws Exception {
 
         Scanner scanner = new Scanner(s);
 
         List<String> list = new ArrayList<String>();
 
-        scanner.useDelimiter(" ");
+        scanner.useDelimiter(",");
 
         while (scanner.hasNext()) {
 
@@ -38,27 +49,24 @@ public class Main {
 
         }
 
+        SeperateToChars(list.get(list.size()-1));
 
-        System.out.println(toLowerCase(list));
     }
 
-    private static String toLowerCase(List<String> s) throws Exception {
+    protected static List<Character> SeperateToChars(String s) {
 
-        String z = "";
+        if(s.contains(" "))s = s.substring(1);
 
         try {
-            for (int i = 0; i < s.size(); i++) {
-
-                z += s.get(i).toLowerCase();
-                z += ' ';
-
+            for(char i : s.toCharArray()){
+                ListOfCharsToRemove.add(i);
             }
 
-            return z;
+            return ListOfCharsToRemove;
         }
-        catch (NullPointerException e){
-            return null;
-        }
-    }
+        catch (IndexOutOfBoundsException e) {return null;}
 
     }
+
+
+}
