@@ -3,6 +3,8 @@ package CE_RemoveCharacters;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.StringReader;
+import java.text.StringCharacterIterator;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -49,11 +51,14 @@ public class Main {
 
         }
 
-        SeperateToChars(list.get(list.size()-1));
+        SeparateToChars(list.get(list.size() - 1));
+        // purge the last segment that contains the chars to remove
+        list.remove(list.get(list.size() - 1));
+        RemoveCharacters(list);
 
     }
 
-    protected static List<Character> SeperateToChars(String s) {
+    protected static List<Character> SeparateToChars(String s) {
 
         if(s.contains(" "))s = s.substring(1);
 
@@ -68,5 +73,23 @@ public class Main {
 
     }
 
+    protected static List<String> RemoveCharacters (List<String> l) {
+        try {
+            for (char c : ListOfCharsToRemove) {
+                for (String item : l) {
 
+                        System.out.println(item);
+                        }
+                    }
+
+
+            System.out.println(l);
+            return l;
+
+        } catch (IndexOutOfBoundsException e) {
+
+            System.out.println("bad stuff");
+            return null;
+        }
+    }
 }
