@@ -77,10 +77,15 @@ public class Main {
     protected static List<String> RemoveCharacters (List<String> l) {
         try {
             for (char c : ListOfCharsToRemove) {
-                CharacterIterator it = new StringCharacterIterator(l.get(0));
+                String fullString;
+                fullString = l.get(0);
+
+                CharacterIterator it = new StringCharacterIterator(fullString);
 
                 for (char i = it.first();i != CharacterIterator.DONE; i = it.next()) {
+                            l.get(0).replace(Character.toString(c),"");
 
+                        //put in a new String for the String without removed chars
                         }
                     }
 
