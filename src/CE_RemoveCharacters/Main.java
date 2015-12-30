@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.StringReader;
+import java.text.CharacterIterator;
 import java.text.StringCharacterIterator;
 import java.util.ArrayList;
 import java.util.List;
@@ -76,9 +77,10 @@ public class Main {
     protected static List<String> RemoveCharacters (List<String> l) {
         try {
             for (char c : ListOfCharsToRemove) {
-                for (String item : l) {
+                CharacterIterator it = new StringCharacterIterator(l.get(0));
 
-                        System.out.println(item);
+                for (char i = it.first();i != CharacterIterator.DONE; i = it.next()) {
+
                         }
                     }
 
