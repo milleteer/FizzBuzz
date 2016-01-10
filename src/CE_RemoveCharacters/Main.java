@@ -1,5 +1,8 @@
 package CE_RemoveCharacters;
 
+import sun.util.resources.ParallelListResourceBundle;
+import sun.util.xml.PlatformXmlPropertiesProvider;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -42,7 +45,7 @@ public class Main {
 
         Scanner scanner = new Scanner(s);
 
-        List<String> list = new ArrayList<String>();
+        ArrayList<String> list = new ArrayList<String>();
 
         scanner.useDelimiter(",");
 
@@ -52,20 +55,22 @@ public class Main {
 
         }
 
-        SeparateToChars(list.get(list.size() - 1));
-        // purge the last segment that contains the chars to remove
-        list.remove(list.get(list.size() - 1));
-        RemoveCharacters(list);
+        SeparateToChars(list.get(1));
+        RemoveCharacters(list.get(0));
 
     }
 
-    protected static List<Character> SeparateToChars(String s) {
+    protected static ArrayList<Character> SeparateToChars(String s) {
 
+        // remove starting space if any
         if(s.contains(" "))s = s.substring(1);
+        // purge contents of ListOfCharsToRemove
+        if (ListOfCharsToRemove.size() != 0)ListOfCharsToRemove.clear();
 
         try {
             for(char i : s.toCharArray()){
-                ListOfCharsToRemove.add(i);
+                //only add if list doesn't contain the char yet
+                if(ListOfCharsToRemove.contains(Character.toString(i)) == false)ListOfCharsToRemove.add(i);
             }
 
             return ListOfCharsToRemove;
@@ -74,24 +79,28 @@ public class Main {
 
     }
 
-    protected static List<String> RemoveCharacters (List<String> l) {
+    protected static String RemoveCharacters (String l) {
         try {
-            for (char c : ListOfCharsToRemove) {
-                String fullString;
-                fullString = l.get(0);
 
-                CharacterIterator it = new StringCharacterIterator(fullString);
+            CharacterIterator ci = new StringCharacterIterator(l);
+            StringBuilder sb = new StringBuilder(l);
 
-                for (char i = it.first();i != CharacterIterator.DONE; i = it.next()) {
-                            l.get(0).replace(Character.toString(c),"");
+            //get the places where chars to delete are located
+           for(char i: ListOfCharsToRemove){
 
-                        //put in a new String for the String without removed chars
-                        }
-                    }
+               for (char j = ci.first();j != CharacterIterator.DONE; j = ci.next()){
+                   if (Character.toString(j).matches(Character.toString(i)))
+                   {
+                      //recursively delete all chars
+                       sb.deleteCharAt(sb.toString().indexOf(j));
 
+                   }
+               }
 
-            System.out.println(l);
-            return l;
+           }
+
+        System.out.println(sb);
+            return sb.toString();
 
         } catch (IndexOutOfBoundsException e) {
 

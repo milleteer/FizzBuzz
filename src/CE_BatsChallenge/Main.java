@@ -8,7 +8,7 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        File file = new File("C:\\Users\\Greg Koles\\IdeaProjects\\FizzBuzz\\src\\CE_BatsChallenge\\input.txt");
+        File file = new File("/home/gkoles/IdeaProjects/FizzBuzz/src/CE_BatsChallenge/input.txt");
         BufferedReader buffer = new BufferedReader(new FileReader(file));
         String line;
         while ((line = buffer.readLine()) != null) {
