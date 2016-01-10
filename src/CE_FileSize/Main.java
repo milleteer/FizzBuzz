@@ -11,8 +11,8 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            //File file = new File("src/CE_FileSize/input.txt");
-            File file = new File(args[0]);
+            File file = new File("src/CE_FileSize/input.txt");
+            //File file = new File(args[0]);
             System.out.println(file.length());
         }
         catch (Exception e){
