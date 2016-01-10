@@ -15,8 +15,8 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-       //File file = new File("src/CE_RemoveCharacters/input.txt");
-       File file = new File(args[0]);
+       File file = new File("src/CE_RemoveCharacters/input.txt");
+      // File file = new File(args[0]);
         BufferedReader buffer = new BufferedReader(new FileReader(file));
         String line;
         while ((line = buffer.readLine()) != null){
