@@ -70,13 +70,22 @@ public class Main {
         try {
             for(char i : s.toCharArray()){
                 //only add if list doesn't contain the char yet
-                if(ListOfCharsToRemove.contains(Character.toString(i)) == false)ListOfCharsToRemove.add(i);
+                if(!ListOfCharsToRemoveContain(i))ListOfCharsToRemove.add(i);
             }
 
             return ListOfCharsToRemove;
         }
         catch (IndexOutOfBoundsException e) {return null;}
 
+    }
+
+    protected static boolean ListOfCharsToRemoveContain (char c){
+
+        for(char i : ListOfCharsToRemove){
+            if(c == i) return true;
+
+        }
+        return false;
     }
 
     protected static String RemoveCharacters (String l) {
