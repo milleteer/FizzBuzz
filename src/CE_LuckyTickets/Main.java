@@ -1,6 +1,8 @@
 package CE_LuckyTickets;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -29,16 +31,17 @@ public class Main {
     }
 
     // Getters and Setters
-    public static int getHalfLength() {
-        return HalfLength;
+    public static int getLength() {
+        return Length;
     }
 
-    public static void setHalfLength(int halfLength) {
-        HalfLength = halfLength / 2;
+    public static void setLength(int halfLength) {
+        Length = halfLength;
     }
 
-    // variables and static values
-    private static int HalfLength;
+        // variables and static values
+    private static int Length;
+
 
 
     // actual functions
@@ -58,9 +61,35 @@ public class Main {
         if(!CheckParity(next))return false;
 
         // Set half-length
-        setHalfLength(Integer.valueOf(next));
+        setLength(Integer.valueOf(next));
+
+        // Fill a list of arrays based on half-length
+        fillArrays(getLength());
+
         return true;
 
+    }
+
+    protected static List<int[]> fillArrays(int Length) throws ArrayIndexOutOfBoundsException{
+
+        List<Integer> FullNumbers = new ArrayList<Integer>();
+        List<String> FormattedFullNumbers = new ArrayList<String>();
+        int NumOfNumbers = (int) Math.pow(10,Length);
+
+        // original full values
+        for (int i = 0; i < NumOfNumbers; i++) {
+            FullNumbers.add(i);
+        }
+
+        // cast with leading zeros
+        for (int i : FullNumbers){
+            FormattedFullNumbers.add(String.format("%0" + Length + "d", i));
+        }
+
+        System.out.println(FormattedFullNumbers);
+
+
+        return null;
     }
 
     private static boolean CheckParity(String next) {
@@ -70,4 +99,6 @@ public class Main {
         else return false;
 
     }
+
+
 }
