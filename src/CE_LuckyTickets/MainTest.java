@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
@@ -32,13 +33,40 @@ public class MainTest {
     @Test
     public void testFillArrays(){
 
-        List<int[]> list = Main.fillArrays(2);
+        List<String> testList = Main.fillArrays(2);
 
-        assertTrue(list.size() == 100);
+        assertTrue(testList.size() == 100);
 
     }
 
 
+    @Test
+    public void testSizeOfSplitFormattedFullNumbersArray(){
 
+        List<String> testList = Main.fillArrays(2);
+
+        List<Pair> Pairs = Main.splitFormattedFullNumbersArray(testList);
+
+        assertTrue(Pairs.size() == 100);
+
+
+    }
+    @Test
+    public void testSplitFormattedFullNumbersArray(){
+
+        List<String> testList = new ArrayList<String>();
+
+        testList.add("0000");
+        testList.add("1111");
+        testList.add("2222");
+        testList.add("1234");
+
+        List<Pair> Pairs = Main.splitFormattedFullNumbersArray(testList);
+
+        assertTrue(Pairs.get(0).compareLR());
+        assertTrue(Pairs.get(1).compareLR());
+        assertTrue(Pairs.get(2).compareLR());
+        //assertFalse(Pairs.get(3).compareLR());
+    }
 
 }

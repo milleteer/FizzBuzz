@@ -1,9 +1,7 @@
 package CE_LuckyTickets;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * Created by gkoles on 2016.02.06..
@@ -38,9 +36,20 @@ public class Main {
     public static void setLength(int halfLength) {
         Length = halfLength;
     }
+    public static List<Pair> getListOfPairs() {
+        return ListOfPairs;
+    }
+    public static void setListOfPairs(List<Pair> listOfPairs) {
+        ListOfPairs = listOfPairs;
+    }
 
-        // variables and static values
+
+
+    // variables and static values
     private static int Length;
+    private static List<String> FormattedFullNumbers = new ArrayList<String>();
+    // create list to store pairs
+    private static List<Pair> ListOfPairs = new ArrayList<Pair>();
 
 
 
@@ -63,17 +72,51 @@ public class Main {
         // Set half-length
         setLength(Integer.valueOf(next));
 
+        // Reset
+        ListOfPairs.clear();
+        FormattedFullNumbers.clear();
+
         // Fill a list of arrays based on half-length
         fillArrays(getLength());
+
+        // Divide into 2 separate arrays
+        splitFormattedFullNumbersArray(FormattedFullNumbers);
+
+        // Compare pair by pair
+        comparePairByPair(getListOfPairs());
 
         return true;
 
     }
 
-    protected static List<int[]> fillArrays(int Length) throws ArrayIndexOutOfBoundsException{
+    private static void comparePairByPair(List<Pair> ListOfPairs) {
+
+        // init counter
+        int cnt = 0;
+
+        // compare pair-by-pair
+        for (Pair pair: ListOfPairs){
+
+            if (pair.compareLR())cnt++;
+
+        }
+        System.out.println(cnt + " is the number of Lucky Tickets");
+    }
+
+    protected static List<Pair> splitFormattedFullNumbersArray(List<String> FormattedFullNumbers) throws IndexOutOfBoundsException {
+
+        // fill the list with pairs
+        for (String i: FormattedFullNumbers) {
+            ListOfPairs.add(new Pair(2,2));
+        }
+
+        return ListOfPairs;
+    }
+
+    protected static List<String> fillArrays(int Length) throws ArrayIndexOutOfBoundsException{
 
         List<Integer> FullNumbers = new ArrayList<Integer>();
-        List<String> FormattedFullNumbers = new ArrayList<String>();
+
         int NumOfNumbers = (int) Math.pow(10,Length);
 
         // original full values
@@ -86,10 +129,7 @@ public class Main {
             FormattedFullNumbers.add(String.format("%0" + Length + "d", i));
         }
 
-        System.out.println(FormattedFullNumbers);
-
-
-        return null;
+        return FormattedFullNumbers;
     }
 
     private static boolean CheckParity(String next) {
